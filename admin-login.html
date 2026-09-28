@@ -1,0 +1,8 @@
+<!doctype html><html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Krishna Clinic — Secure Admin</title>
+<style>
+body{font-family:Arial,"Noto Sans Devanagari",sans-serif;background:#f4faf7;margin:0;color:#173027}.box{max-width:420px;margin:10vh auto;background:#fff;padding:28px;border-radius:18px;box-shadow:0 12px 40px #0001;border:1px solid #dceae3}h1{color:#063b2b}input{width:100%;padding:13px;margin:7px 0 15px;border:1px solid #cbdcd4;border-radius:9px;box-sizing:border-box}.btn{background:#087443;color:#fff;border:0;border-radius:9px;padding:12px 18px;font-weight:bold;width:100%}.msg{margin-top:15px;color:#b23b2f}
+</style></head><body><div class="box"><h1>⚙️ Krishna Clinic Admin</h1><p>Secure admin login</p><label>Email</label><input id="e" type="email"><label>Password</label><input id="p" type="password"><button class="btn" onclick="login()">Login</button><div id="m" class="msg"></div></div>
+<script>
+async function login(){m.textContent='';try{let r=await fetch('/api/admin/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:e.value,password:p.value})});let j=await r.json();if(!r.ok)throw Error(j.error||'Login failed');localStorage.setItem('kc_admin_token',j.token);location.href='admin.html'}catch(x){m.textContent=x.message}}
+</script></body></html>
